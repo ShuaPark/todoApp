@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "To Do App",
-    "Description": "This is to do app made with React native by Shua",
+    "description": "This is to do app made with React native by Shua",
     "slug": "todoApp",
     "privacy": "public",
     "sdkVersion": "36.0.0",
