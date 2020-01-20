@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, TextInput, Dimensions, Platform, ScrollView } from 'react-native';
+import {AppLoading} from "expo";
 
+//<uses-permission android:name="android.permission.INTERNET" />
 const {height, width} = Dimensions.get("window");
 
 export default class App extends React.Component {
@@ -24,13 +26,13 @@ export default class App extends React.Component {
             //returnKeyType={"done"}
             autoCorrect = {false}
           />
-          <ScrollView>
-
+          <ScrollView contentContainerStyle={styles.toDos}>
+            <ToDo/>
           </ScrollView>
 
         </View>
       </View>
-    );
+    );                                                            
     //To do list = scroll
     //new to do = 상단 고정
 
@@ -39,7 +41,7 @@ export default class App extends React.Component {
       this.setState({
         newToDo: text
       });
-    }
+    };
   }
 }
 
@@ -60,18 +62,11 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     flex: 1,
-    width: width -50,
+    width: width -25,
     borderTopLeftRadius: 10, //only top&left - radius 10
     borderTopRightRadius: 10, //Top&Right
+    
     //platform specific code
-    //ios
-    /*
-    shadowColor
-    shadowOffset
-    shadowOpacity
-    shadowRadius
-    */
-   //Android - elevation : 0-5
    ...Platform.select({
      ios: {
        shadowColor: "rgb(50,50,50)",
@@ -92,5 +87,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#bbb",
     borderBottomWidth: 1,
     fontSize: 25
+  },
+  toDos: {
+    alignItems: "center"
   }
 });
