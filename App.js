@@ -23,7 +23,6 @@ export default class App extends React.Component {
             value = {newToDo}
             onChangeText = {this._controlNewToDo}
             placeholderTextColor={"#999"}
-            //returnKeyType={"done"}
             autoCorrect = {false}
           />
           <ScrollView contentContainerStyle={styles.toDos}>
@@ -33,6 +32,7 @@ export default class App extends React.Component {
         </View>
       </View>
     );                                                            
+    //ToDo -> 렌더링?
     //To do list = scroll
     //new to do = 상단 고정
 
