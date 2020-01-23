@@ -5,10 +5,20 @@ import {AppLoading} from "expo";
 //<uses-permission android:name="android.permission.INTERNET" />
 const {height, width} = Dimensions.get("window");
 
+
+
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        isLoaded: false
+    }
+};
 //export default function App() {
   state = {
-    newToDo: ""
+    isEditing: false,
+    isCompleted: false,
+    toDoValue: ""
   };
   render() {
     const{newToDo} = this.state;
@@ -19,14 +29,14 @@ export default class App extends React.Component {
         <View style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder={"New To DO"}
+            //placeholder={"New To DO"}
             value = {newToDo}
             onChangeText = {this._controlNewToDo}
             placeholderTextColor={"#999"}
             autoCorrect = {false}
           />
           <ScrollView contentContainerStyle={styles.toDos}>
-            <ToDo/>
+            <ToDo text={"Hello! I'm To Do"} />
           </ScrollView>
 
         </View>

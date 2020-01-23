@@ -4,20 +4,46 @@ import PropTypes from "prop-types";
 
 const{width, height} = Dimensions.get("window");
 
+
 export default class ToDo extends Component{
     state = {
         isEditing: false,
-        isCompleted: false}; //toDovaule: this.props.text
+        isCompleted: false,
+        toDoVaule: this.props.text};
     //componenet 모양새 정리?
     render(){
         const { isCompleted, isEditing} = this.state;
+        const { text } = this.props;
         return(
             <View style = {styles.container}>
                 <View style = {styles.column}>
-                <TouchableOpacity onPress={this._toggleComplete}>
-                    <View style = {[styles.circle, isCompleted? styles.completedCircle : styles.uncompletedCircle]}/>
-                </TouchableOpacity>
-                <Text style={[style.text, isCompleted? styles.completedText: styles.unCompletedText]}>Testing!!</Text>
+                    <TouchableOpacity onPress={this._toggleComplete}>
+                        <View 
+                            style = {[styles.circle, 
+                                isCompleted? styles.completedCircle : styles.uncompletedCircle]}/>
+                    </TouchableOpacity>
+                    {isEditing ? (
+                        <Text style = {[
+                            styles.text,
+                            styles.input,
+                            isCompleted? styles.completedText: styles.unCompletedText
+                        ]}
+                        value = {toDoValue}
+                        multiline = {true}
+                        onChangeText = {this._controllInput}
+                        //returnKeyType = {"done"}
+                        onBlur = {this._finishEditing}
+                        underlineColorAndroid = {"transparent"}
+                        />
+                    ): (
+                        <Text style={[
+                            styles.text,
+                            isCompleted? styles.completedText: styles.compl
+                        ]}
+                        >
+                            {text}
+                        </Text>)}
+
                 </View>
                 
                     {isEditing? (
@@ -58,9 +84,9 @@ export default class ToDo extends Component{
     };
     //연필 눌렀을 때, start editing
     _startEditing = () => {
-        this.setState({
-            isEditing = true
-        });
+        const {text} = this.props;
+        this.setState({ isEditing: true
+        })};
     };
     //V눌렀을 때, finish editing
     _finishEditing = () => {
@@ -68,7 +94,7 @@ export default class ToDo extends Component{
             isEditing = false
         });
     };
-}
+
 const styles = StyleSheet.create({
     container: {
         width : width -50,
@@ -116,6 +142,9 @@ const styles = StyleSheet.create({
         //margin을 통해 주변 영역도 선택 가능. 
         marginVertical: 10,
         marginHorizontal: 10
+    },
+    input: {
+
     }
 
 });
