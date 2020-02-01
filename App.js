@@ -19,7 +19,8 @@ export default class App extends React.Component {
   }
   render() {
     const {newToDo, loadedToDos, toDos} = this.state;
-    console.log(toDos);
+    //어떻게 나오는지 console에서 확인하기
+    //console.log(toDos);
     if (!loadedToDos){
       return <AppLoading />;
     }
@@ -38,13 +39,15 @@ export default class App extends React.Component {
             onSubmitEditing = {this._addToDo}
             />
             <ScrollView contentContainerStyle={styles.toDos}>
-              <ToDo text={"TOEFL L/R/V study"}/>
+              {Object.values(toDos).map(toDo => <ToDo key = {toDo.id} {...toDo} /> )}
             </ScrollView>
         </View>
       </View>
     
     );                                                            
   }
+  //scrollView /if it's array/- {toDos.map(todo => <ToDo />)} 
+  
   _controlNewToDo = text => {
     this.setState({
       newToDo: text
